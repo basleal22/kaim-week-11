@@ -1,0 +1,1 @@
+As a Financial Analyst at GMF Investments, our objective is to apply time series forecasting to historical financial data to enhance portfolio management strategies. This involves analyzing data, building predictive models, and recommending portfolio adjustments based on forecasted trends.
