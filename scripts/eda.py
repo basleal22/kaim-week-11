@@ -3,6 +3,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from statsmodels.tsa.seasonal import seasonal_decompose
 def extract_data(ticker,starttime,endtime):
     data = yf.download(ticker,start=starttime,end=endtime)
     return data
@@ -94,3 +95,12 @@ def outliers_identify(data):
     plt.grid()
     plt.legend()
     plt.show()
+def seasonal_decomposition(data):
+    tickers= ['TSLA', 'BND', 'SPY']
+    plt.figure
+    for ticker in tickers:
+        closing=data['Close'][ticker].dropna()
+        #perform seasonal decomposition
+        decomposition = seasonal_decompose(closing,model='additive',period=30)
+        decomposition.plot()
+        plt.show()
