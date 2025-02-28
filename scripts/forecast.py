@@ -16,10 +16,16 @@ def split_test_train(data):
     test = data.iloc[split_index:]
     return train,test
 def arima_model(train,test):
-    arima_m = ARIMA(train,order=(1,1,1))
-    arima_fit = arima_m.fit()
+    tickers_close=['Close_BND', 'Close_SPY', 'Close_TSLA']
+    for ticker in tickers_close:
+        train_ticker=train[ticker].squeeze()
+        arima_m = ARIMA(train_ticker,order=(1,1,1))
+        arima_fit = arima_m.fit()
     return arima_fit
 def sarima_model(train,test):
-    sarima_m= SARIMAX(train,seasonal_order=(1,1,1,12))
-    sarima_fit=sarima_m.fit()
+    tickers_close=['Close_BND', 'Close_SPY', 'Close_TSLA']
+    for ticker in tickers_close:
+        train_ticker=train[ticker].squeeze()
+        sarima_m= SARIMAX(train_ticker,seasonal_order=(1,1,1,12))
+        sarima_fit=sarima_m.fit()
     return sarima_fit
