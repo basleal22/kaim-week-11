@@ -23,16 +23,12 @@ def split_test_train(data):
 def arima_model(train,test):
     tickers_close=['Close_BND', 'Close_SPY', 'Close_TSLA']
     models={}
-    train_ticker_2=train['Close_TSLA'].squeeze()
-    arima_m2=ARIMA(train_ticker_2,order=(0,1,2))
-    arima_m2_fit=arima_m2.fit()
-    model2=arima_m2_fit
     for ticker in tickers_close:
         train_ticker=train[ticker].squeeze()
         arima_m = ARIMA(train_ticker,order=(0,1,2))
         arima_fit = arima_m.fit()
         models[ticker]=arima_fit
-    return model2
+    return models
 def sarima_model(train,test):
     tickers_close=['Close_BND', 'Close_SPY', 'Close_TSLA']
     models={}
